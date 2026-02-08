@@ -1,20 +1,41 @@
-<div class="tablon-container">
-  <nav class="ninja-navbar">
-    <h2 class="nav-logo">ROAD TO <span class="highlight">ANBU</span></h2>
-    <div class="nav-links">
-      <span class="nav-item">MAPA</span>
-      <span class="nav-item active">MISIONES</span>
-    </div>
-  </nav>
-
-  <main class="mission-view">
-    <div class="mission-scroll">
-      <div class="scroll-top">
-        <span class="rank-tag">S-RANK</span>
-        <h3 class="mission-title">Proteger al Daimyo</h3>
+<ion-content>
+  <div class="tablon-container">
+    <nav class="ninja-navbar">
+      <h2 class="nav-logo">ROAD TO <span class="highlight">ANBU</span></h2>
+      <div class="nav-links">
+        <span class="nav-item">MAPA</span>
+        <span class="nav-item active">TABLÓN</span>
       </div>
-      <p class="mission-desc">Escolta VIP a través del Bosque de la Muerte. Se esperan asesinos de alto nivel.</p>
-      <button [routerLink]="['/mision']" class="btn-view">LEER PERGAMINO</button>
+    </nav>
+
+    <div class="ninja-filter">
+      <ion-segment [(ngModel)]="filtro" mode="md">
+        <ion-segment-button value="DISPONIBLE">
+          <ion-label>DISPONIBLES</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="ACEPTADA">
+          <ion-label>EN CURSO</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="COMPLETADA">
+          <ion-label>CONCLUIDAS</ion-label>
+        </ion-segment-button>
+      </ion-segment>
     </div>
-  </main>
-</div>
+
+    <main class="mission-view">
+      <div class="mission-scroll" *ngFor="let mision of misionesFiltradas">
+        <div class="scroll-top">
+          <span class="rank-tag" [ngClass]="mision.rankRequirement">{{ mision.rankRequirement }}-RANK</span>
+          <h3 class="mission-title">{{ mision.title }}</h3>
+        </div>
+        <p class="mission-desc">{{ mision.description }}</p>
+        
+        <button [routerLink]="['/mision', mision.id]" class="btn-view">LEER PERGAMINO</button>
+      </div>
+
+      <div *ngIf="misionesFiltradas.length === 0" class="empty-state">
+        <p>No hay misiones {{ filtro.toLowerCase() }}s en este momento.</p>
+      </div>
+    </main>
+  </div>
+</ion-content>

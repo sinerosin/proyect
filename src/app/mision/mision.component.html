@@ -1,29 +1,74 @@
-<div class="mision-detail-container">
-  <div class="content-wrapper">
-    <button [routerLink]="['/tablon']" class="btn-back">
-      <span class="material-symbols-outlined">arrow_back</span> Volver al Tablón
-    </button>
+<ion-content>
+  <div class="mision-detail-container" *ngIf="mision; else cargando">
+    <div class="content-wrapper">
+      
+      <button [routerLink]="['/tablon']" class="btn-back">
+        <span class="material-symbols-outlined">arrow_back</span> Volver al Tablón
+      </button>
 
-    <div class="mision-header">
-      <span class="status-label">MISIÓN ACTIVA</span>
-      <h1 class="mision-name">RECUPERAR EL PERGAMINO PROHIBIDO</h1>
-    </div>
-
-    <div class="briefing-box">
-      <h2 class="briefing-title">Instrucciones del Hokage</h2>
-      <div class="briefing-text">
-        <p>Un ninja renegado de la Lluvia ha robado el Sello de los Cielos de la biblioteca secreta.</p>
-        <ul class="task-list">
-          <li>Rastrear firma de chakra hacia el norte.</li>
-          <li>Neutralizar cualquier resistencia sin alertar a la patrulla fronteriza.</li>
-          <li>Asegurar el pergamino y regresar de inmediato.</li>
-        </ul>
+      <div class="mision-header">
+        <span class="status-label" [ngClass]="mision.status.toLowerCase()">
+          {{ mision.status === 'DISPONIBLE' ? 'PERGAMINO ABIERTO' : 'MISIÓN EN CURSO' }}
+        </span>
+        <h1 class="mision-name">{{ mision.title }}</h1>
       </div>
-    </div>
 
-    <div class="action-footer">
-      <button class="btn-action primary">ENTREGAR MISIÓN</button>
-      <button [routerLink]="['/tablon']" class="btn-action outline">ABANDONAR</button>
+      <div class="briefing-box">
+        <h2 class="briefing-title">Instrucciones del Hokage (Rango {{ mision.rankRequirement }})</h2>
+        <div class="briefing-text">
+          <p>{{ mision.description }}</p>
+          <div class="reward-tag">
+            <strong>RECOMPENSA:</strong> <span>{{ mision.reward }} Ryos</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-footer" *ngIf="mision.status === 'DISPONIBLE'">
+        <button class="btn-action primary" (click)="aceptarMision()">ACEPTAR MISIÓN</button>
+      </div>
+
+      <div class="report-section" *ngIf="mision.status === 'ACEPTADA'">
+        <h2 class="briefing-title">REPORTE DE CAMPO</h2>
+        
+        <textarea 
+          [(ngModel)]="reporteTexto" 
+          class="report-input" 
+          placeholder="Escribe aquí los detalles del cumplimiento de la misión...">
+        </textarea>
+
+        <div class="evidence-upload">
+          <p class="label-evidence">EVIDENCIA VISUAL (FOTO):</p>
+          <input type="file" (change)="capturarEvidencia($event)" accept="image/*" id="file-input" hidden>
+          
+          <label for="file-input" class="btn-upload">
+            <span class="material-symbols-outlined">photo_camera</span>
+            {{ imagenEvidencia ? 'FOTO LISTA ✓' : 'SUBIR EVIDENCIA' }}
+          </label>
+
+          <div class="preview-container" *ngIf="imagenEvidencia">
+            <img [src]="imagenEvidencia" class="preview-img">
+            <button class="btn-remove-img" (click)="imagenEvidencia = null">Eliminar</button>
+          </div>
+        </div>
+
+        <div class="action-footer">
+          <button class="btn-action primary" (click)="entregarMision()">ENTREGAR MISIÓN</button>
+          <button class="btn-action outline" (click)="abandonarMision()">ABANDONAR</button>
+        </div>
+      </div>
+
+      <div class="completed-msg" *ngIf="mision.status === 'COMPLETADA'">
+        <div class="stamp">COMPLETADA</div>
+        <p>Este pergamino ha sido sellado y archivado en la biblioteca secreta de Konoha.</p>
+      </div>
+
     </div>
   </div>
-</div>
+
+  <ng-template #cargando>
+    <div class="loading-container">
+      <div class="ninja-spinner"></div>
+      <p>Desencriptando pergamino...</p>
+    </div>
+  </ng-template>
+</ion-content>

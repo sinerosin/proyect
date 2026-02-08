@@ -24,7 +24,7 @@ export class LoginComponent {
   onLogin() {
     this.authService.login(this.credentials).subscribe({
       next: (res: AuthResponse) => {
-        console.log('Ninja autenticado', res);
+        console.log('Ninja autenticado');
         this.router.navigate(['/tablon']);
       },
       error: (err) => {

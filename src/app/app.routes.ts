@@ -14,7 +14,7 @@ export const routes: Routes = [
     loadComponent: () => import('./tablon/tablon.component').then((m) => m.TablonComponent),
   },
   {
-    path: 'mision',
+    path: 'mision/:id',
     loadComponent: () => import('./mision/mision.component').then((m) => m.MisionComponent),
   },
   {

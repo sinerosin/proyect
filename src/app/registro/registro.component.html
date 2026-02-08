@@ -4,12 +4,23 @@
     <p class="register-subtitle">Crea tu registro oficial de ninja</p>
     
     <div class="input-stack">
-      <input type="text" class="reg-input" placeholder="Nombre de usuario">
-      <input type="email" class="reg-input" placeholder="Correo electrónico">
-      <input type="password" class="reg-input" placeholder="Contraseña de jutsu">
+      <input type="text" 
+             class="reg-input" 
+             placeholder="Nombre de usuario"
+             [(ngModel)]="nuevoNinja.username">
+             
+      <input type="email" 
+             class="reg-input" 
+             placeholder="Correo electrónico"
+             [(ngModel)]="nuevoNinja.email">
+             
+      <input type="password" 
+             class="reg-input" 
+             placeholder="Contraseña de jutsu"
+             [(ngModel)]="nuevoNinja.password">
     </div>
     
-    <button [routerLink]="['/login']" class="btn-register">Completar Registro</button>
+    <button (click)="onRegister()" class="btn-register">Completar Registro</button>
 
     <p class="login-prompt">
       ¿Ya eres miembro? <a [routerLink]="['/login']" class="login-link">Inicia sesión</a>
