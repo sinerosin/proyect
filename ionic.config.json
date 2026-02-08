@@ -1,0 +1,7 @@
+{
+  "name": "TablonMisiones",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
