@@ -1,28 +1,48 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>Acceso Shinobi</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content class="ion-padding">
+<ion-content>
   <div class="login-container">
-    <ion-item class="ion-margin-bottom">
-      <ion-label position="floating">Usuario Ninja</ion-label>
-      <ion-input [(ngModel)]="credentials.username" name="username" type="text" placeholder="Nombre de ninja..."></ion-input>
-    </ion-item>
+    <header class="login-header">
+      <div class="header-content">
+        <h1 class="header-title">Road ANBU</h1>
+      </div>
+      <button class="btn-link" [routerLink]="['/registro']">REGISTRARSE</button>
+    </header>
 
-    <ion-item class="ion-margin-bottom">
-      <ion-label position="floating">Contraseña</ion-label>
-      <ion-input [(ngModel)]="credentials.password" name="password" type="password" placeholder="********"></ion-input>
-    </ion-item>
+    <main class="login-main">
+      <div class="login-card">
+        <div class="card-header">
+          <h2 class="card-title">Acceso Shinobi</h2>
+          <p class="card-subtitle">Identifícate ante el Hokage para continuar</p>
+        </div>
 
-    <ion-button expand="block" (click)="onLogin()" class="ion-margin-top">
-      ENTRAR AL PORTAL
-      <ion-icon slot="end" name="log-in-outline"></ion-icon>
-    </ion-button>
+        <div class="form-group">
+          <label class="input-label">Usuario Ninja</label>
+          <input type="text" 
+                 class="ninja-input" 
+                 placeholder="Ej: Naruto_Uzumaki"
+                 [(ngModel)]="credentials.username">
+        </div>
 
-    <div class="ion-text-center ion-margin-top">
-      <p>¿Aún no tienes rango? <a [routerLink]="['/registro']">Regístrate</a></p>
-    </div>
+        <div class="form-group">
+          <label class="input-label">Contraseña de Jutsu</label>
+          <input type="password" 
+                 class="ninja-input" 
+                 placeholder="********"
+                 [(ngModel)]="credentials.password">
+        </div>
+
+        <button class="btn-submit" (click)="onLogin()">
+          ENTRAR AL PORTAL
+        </button>
+
+        <div class="ion-text-center ion-margin-top">
+          <p class="card-subtitle">
+            ¿Aún no tienes rango? 
+            <a [routerLink]="['/registro']" style="color: #ec2513; font-weight: bold; text-decoration: none;">
+              Crea tu registro
+            </a>
+          </p>
+        </div>
+      </div>
+    </main>
   </div>
 </ion-content>

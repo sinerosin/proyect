@@ -45,7 +45,7 @@ export class AuthService {
     const { value } = await Preferences.get({ key: this.TOKEN_KEY });
     return value;
   }
-getMisiones() {
+  getMisiones() {
   return from(this.getToken()).pipe(
     switchMap((token) => {
       const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
@@ -62,14 +62,11 @@ getMisiones() {
   acceptMission(id: string): Observable<any> {
     return from(this.getToken()).pipe(
       switchMap((token) => {
-        const headers = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
-        return this.http.patch(`${this.apiUrl}/missions/${id}`, { status: 'ACEPTADA' }, { headers });
+        const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
+        return this.http.patch(`${this.apiUrl}/missions/${id}/accept`, {}, { headers });
       })
     );
   }
-
-  
-  
 
   completeMission(id: string, reportData: any): Observable<any> {
     return from(this.getToken()).pipe(
@@ -82,7 +79,7 @@ getMisiones() {
   getProfile(): Observable<any> {
     return from(this.getToken()).pipe(
       switchMap(token => {
-        const headers = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+        const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
         return this.http.get(`${this.apiUrl}/auth/profile`, { headers });
       })
     );

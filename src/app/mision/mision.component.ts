@@ -50,18 +50,15 @@ export class MisionComponent implements OnInit {
       reader.readAsDataURL(file);
     }
   }
-
+  
   entregarMision() {
     if (!this.reporteTexto) return alert('Escribe el reporte.');
-    // Aquí llamarías a completeMission en el servicio
     alert('Reporte enviado.');
     this.router.navigate(['/tablon']);
   }
 
-  // --- ESTA ES LA FUNCIÓN QUE TE FALTABA ---
   abandonarMision() {
     if (confirm('¿Seguro que quieres abandonar esta misión?')) {
-      // Si tu servicio tiene cancelar, llámalo aquí. Si no, solo vuelve:
       this.router.navigate(['/tablon']);
     }
   }

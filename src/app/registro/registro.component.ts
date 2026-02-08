@@ -25,18 +25,16 @@ export class RegistroComponent implements OnInit {
   ) { }
 
   ngOnInit() {}
-
   onRegister() {
     if (!this.nuevoNinja.username || !this.nuevoNinja.email || !this.nuevoNinja.password) {
       alert('Por favor, completa todos los campos del pergamino de registro.');
       return;
     }
-
     this.authService.register(this.nuevoNinja).subscribe({
       next: (res) => {
         console.log('Registro exitoso', res);
-        alert('¡Bienvenido a la aldea! Ahora puedes iniciar sesión.');
-        this.router.navigate(['/login']);
+        alert('¡Bienvenido a la aldea!.');
+        this.router.navigate(['/tablon']);
       },
       error: (err) => {
         console.error('Error en el registro', err);

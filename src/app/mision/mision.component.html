@@ -1,74 +1,80 @@
-<ion-content>
-  <div class="mision-detail-container" *ngIf="mision; else cargando">
-    <div class="content-wrapper">
-      
-      <button [routerLink]="['/tablon']" class="btn-back">
-        <span class="material-symbols-outlined">arrow_back</span> Volver al Tablón
-      </button>
-
-      <div class="mision-header">
-        <span class="status-label" [ngClass]="mision.status.toLowerCase()">
-          {{ mision.status === 'DISPONIBLE' ? 'PERGAMINO ABIERTO' : 'MISIÓN EN CURSO' }}
-        </span>
-        <h1 class="mision-name">{{ mision.title }}</h1>
-      </div>
-
-      <div class="briefing-box">
-        <h2 class="briefing-title">Instrucciones del Hokage (Rango {{ mision.rankRequirement }})</h2>
-        <div class="briefing-text">
-          <p>{{ mision.description }}</p>
-          <div class="reward-tag">
-            <strong>RECOMPENSA:</strong> <span>{{ mision.reward }} Ryos</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="action-footer" *ngIf="mision.status === 'DISPONIBLE'">
-        <button class="btn-action primary" (click)="aceptarMision()">ACEPTAR MISIÓN</button>
-      </div>
-
-      <div class="report-section" *ngIf="mision.status === 'ACEPTADA'">
-        <h2 class="briefing-title">REPORTE DE CAMPO</h2>
-        
-        <textarea 
-          [(ngModel)]="reporteTexto" 
-          class="report-input" 
-          placeholder="Escribe aquí los detalles del cumplimiento de la misión...">
-        </textarea>
-
-        <div class="evidence-upload">
-          <p class="label-evidence">EVIDENCIA VISUAL (FOTO):</p>
-          <input type="file" (change)="capturarEvidencia($event)" accept="image/*" id="file-input" hidden>
-          
-          <label for="file-input" class="btn-upload">
-            <span class="material-symbols-outlined">photo_camera</span>
-            {{ imagenEvidencia ? 'FOTO LISTA ✓' : 'SUBIR EVIDENCIA' }}
-          </label>
-
-          <div class="preview-container" *ngIf="imagenEvidencia">
-            <img [src]="imagenEvidencia" class="preview-img">
-            <button class="btn-remove-img" (click)="imagenEvidencia = null">Eliminar</button>
-          </div>
-        </div>
-
-        <div class="action-footer">
-          <button class="btn-action primary" (click)="entregarMision()">ENTREGAR MISIÓN</button>
-          <button class="btn-action outline" (click)="abandonarMision()">ABANDONAR</button>
-        </div>
-      </div>
-
-      <div class="completed-msg" *ngIf="mision.status === 'COMPLETADA'">
-        <div class="stamp">COMPLETADA</div>
-        <p>Este pergamino ha sido sellado y archivado en la biblioteca secreta de Konoha.</p>
-      </div>
-
-    </div>
+<ion-content class="ninja-bg">
+  <div class="loading-container" *ngIf="!mision; else content">
+    <div class="shuriken-spinner"></div>
+    <p>Desencriptando pergamino...</p>
   </div>
 
-  <ng-template #cargando>
-    <div class="loading-container">
-      <div class="ninja-spinner"></div>
-      <p>Desencriptando pergamino...</p>
-    </div>
+  <ng-template #content>
+    <div class="mision-detail-container">
+      <div class="scroll-canvas">
+        
+        <button [routerLink]="['/tablon']" class="btn-back">
+          <span>TABLÓN</span>
+        </button>
+
+        <header class="scroll-header">
+          <div class="status-badge" [ngClass]="mision!.status.toLowerCase()">
+            {{ mision!.status }}
+          </div>
+          <h1 class="mision-title">{{ mision!.title }}</h1>
+          <div class="rank-requirement">
+            NIVEL REQUERIDO: <span class="rank-text">{{ mision!.rankRequirement }}-RANK</span>
+          </div>
+        </header>
+
+        <div class="scroll-body">
+          <section class="briefing-section">
+            <h2 class="section-label">INSTRUCCIONES</h2>
+            <p class="description-text">{{ mision!.description }}</p>
+            <div class="reward-box">
+              <span class="ryo-icon">¥</span>
+              <span class="amount">{{ mision!.reward }}</span>
+              <span class="currency">RYOS</span>
+            </div>
+          </section>
+
+          <hr class="scroll-divider">
+
+          <div class="actions-area" *ngIf="mision!.status === 'DISPONIBLE'">
+            <button 
+              class="btn-ninja primary" 
+              (click)="aceptarMision()">
+              ACEPTAR MISIÓN
+            </button>
+          </div>
+
+          <div class="report-area" *ngIf="mision!.status === 'ACEPTADA'">
+            <h2 class="section-label">REPORTE DE CAMPO</h2>
+            <textarea 
+              [(ngModel)]="reporteTexto" 
+              class="ninja-input" 
+              placeholder="Describe los detalles de la infiltración...">
+            </textarea>
+
+            <div class="upload-section">
+              <input type="file" (change)="capturarEvidencia($event)" accept="image/*" id="file-input" hidden>
+              <label for="file-input" class="btn-ninja outline">
+                <span class="material-symbols-outlined">add_a_photo</span>
+                {{ imagenEvidencia ? 'EVIDENCIA CAPTURADA' : 'SUBIR FOTO' }}
+              </label>
+
+              <div class="preview-frame" *ngIf="imagenEvidencia">
+                <img [src]="imagenEvidencia" alt="evidencia">
+                <button class="btn-clear" (click)="imagenEvidencia = null">×</button>
+              </div>
+            </div>
+
+            <footer class="action-footer">
+              <button class="btn-ninja primary" (click)="entregarMision()">ENTREGAR</button>
+              <button class="btn-ninja danger" (click)="abandonarMision()">ABANDONAR</button>
+            </footer>
+          </div>
+
+          <div class="archived-area" *ngIf="mision!.status === 'COMPLETADA'">
+            <div class="official-stamp">COMPLETADA</div>
+            <p class="archive-text">Este pergamino ha sido sellado por el Hokage y archivado en la biblioteca secreta.</p>
+          </div>
+
+        </div> </div> </div>
   </ng-template>
 </ion-content>

@@ -1,61 +1,147 @@
-.mision-detail-container {
-  background: #221210;
-  min-height: 100vh;
-  color: white;
-  padding: 3rem 1.5rem;
+/* Paleta ANBU */
+$konoha-red: #ec2513;
+$konoha-dark: #1a0e0d;
+$parchment: #f3e5ab;
+$wood: #221210;
+
+.ninja-bg {
+  --background: #{$wood};
 }
 
-.content-wrapper { max-width: 760px; margin: 0 auto; }
+.mision-detail-container {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  min-height: 100%;
+}
+
+.scroll-canvas {
+  background: $parchment;
+  width: 100%;
+  max-width: 600px;
+  min-height: 80vh;
+  border-left: 15px solid #5d4037;
+  border-right: 15px solid #5d4037;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+  padding: 30px;
+  position: relative;
+  color: #2c1e1a;
+  background-image: radial-gradient(#00000010 1px, transparent 0);
+  background-size: 20px 20px;
+}
 
 .btn-back {
+  background: $konoha-dark;
+  color: $parchment;
+  border: none;
+  padding: 8px 15px;
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #c99692;
-  background: none;
-  border: none;
+  font-weight: 900;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
   cursor: pointer;
-  font-size: 0.95rem;
-  margin-bottom: 2.5rem;
-  padding: 0;
-  &:hover { color: white; }
 }
 
-.mision-header {
-  margin-bottom: 2.5rem;
-  .status-label { color: #ec2513; font-weight: bold; font-size: 0.75rem; letter-spacing: 2.5px; }
-  .mision-name { font-size: 2.8rem; font-weight: 900; margin: 0.5rem 0; line-height: 1.1; }
+.mision-title {
+  font-family: 'Cinzel', serif; // O una fuente similar de estilo antiguo
+  font-size: 1.8rem;
+  font-weight: 900;
+  margin: 10px 0;
+  line-height: 1.1;
+  text-transform: uppercase;
+  border-bottom: 3px solid rgba($konoha-dark, 0.1);
+  padding-bottom: 10px;
 }
 
-.briefing-box {
-  background: #2d1b1a;
-  border-left: 5px solid #ec2513;
-  padding: 2.5rem;
-  border-radius: 0 1rem 1rem 0;
-  
-  .briefing-title { margin: 0 0 1.25rem 0; font-size: 1.3rem; border-bottom: 1px solid #482623; padding-bottom: 0.75rem; }
-  .briefing-text { 
-    opacity: 0.85; line-height: 1.7; 
-    .task-list { padding-left: 1.25rem; margin-top: 1rem; li { margin-bottom: 0.5rem; } }
-  }
+.rank-text {
+  color: $konoha-red;
+  font-weight: 900;
 }
 
-.action-footer {
+.section-label {
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  opacity: 0.6;
+  margin-top: 30px;
+}
+
+.ryo-icon { font-size: 1.5rem; }
+.reward-box {
+  background: rgba($konoha-dark, 0.05);
+  padding: 15px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  .amount { font-size: 1.5rem; font-weight: 900; }
+}
+
+/* Botones Ninja */
+.btn-ninja {
+  width: 100%;
+  padding: 18px;
+  border: none;
+  font-weight: 900;
+  letter-spacing: 2px;
   display: flex;
-  gap: 1.25rem;
-  margin-top: 3.5rem;
-  
-  .btn-action {
-    padding: 1.25rem;
-    border-radius: 0.75rem;
-    font-weight: 800;
-    border: none;
-    cursor: pointer;
-    flex: 1;
-    font-size: 1rem;
-    transition: all 0.2s;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  transition: 0.3s;
+
+  &.primary {
+    background: $konoha-dark;
+    color: $parchment;
+    &:disabled { opacity: 0.5; filter: grayscale(1); }
   }
   
-  .btn-action.primary { background: #ec2513; color: white; }
-  .btn-action.outline { background: transparent; border: 2px solid #482623; color: white; &:hover { background: #482623; } }
+  &.outline {
+    background: transparent;
+    border: 2px solid $konoha-dark;
+    color: $konoha-dark;
+  }
+
+  &.danger {
+    background: #444;
+    color: #eee;
+  }
+}
+
+/* El Sello de Completada */
+.official-stamp {
+  border: 5px double $konoha-red;
+  color: $konoha-red;
+  font-size: 2.5rem;
+  font-weight: 900;
+  width: fit-content;
+  padding: 10px 30px;
+  transform: rotate(-15deg);
+  margin: 40px auto;
+  opacity: 0.8;
+  filter: blur(0.5px);
+}
+
+.ninja-input {
+  width: 100%;
+  min-height: 120px;
+  background: rgba($konoha-dark, 0.05);
+  border: none;
+  border-bottom: 2px solid $konoha-dark;
+  padding: 15px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.preview-frame {
+  margin-top: 15px;
+  position: relative;
+  img { width: 100%; border: 10px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+  .btn-clear {
+    position: absolute; top: -10px; right: -10px;
+    background: $konoha-red; color: white; border-radius: 50%;
+    width: 25px; height: 25px; border: none;
+  }
 }
