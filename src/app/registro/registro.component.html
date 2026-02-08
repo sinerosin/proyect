@@ -1,3 +1,18 @@
-<p>
-  registro works!
-</p>
+<div class="register-page">
+  <div class="register-card">
+    <h1 class="register-title">ÚNETE A LA ALDEA</h1>
+    <p class="register-subtitle">Crea tu registro oficial de ninja</p>
+    
+    <div class="input-stack">
+      <input type="text" class="reg-input" placeholder="Nombre de usuario">
+      <input type="email" class="reg-input" placeholder="Correo electrónico">
+      <input type="password" class="reg-input" placeholder="Contraseña de jutsu">
+    </div>
+    
+    <button [routerLink]="['/login']" class="btn-register">Completar Registro</button>
+
+    <p class="login-prompt">
+      ¿Ya eres miembro? <a [routerLink]="['/login']" class="login-link">Inicia sesión</a>
+    </p>
+  </div>
+</div>

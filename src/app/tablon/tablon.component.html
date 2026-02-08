@@ -1,3 +1,20 @@
-<p>
-  tablon works!
-</p>
+<div class="tablon-container">
+  <nav class="ninja-navbar">
+    <h2 class="nav-logo">ROAD TO <span class="highlight">ANBU</span></h2>
+    <div class="nav-links">
+      <span class="nav-item">MAPA</span>
+      <span class="nav-item active">MISIONES</span>
+    </div>
+  </nav>
+
+  <main class="mission-view">
+    <div class="mission-scroll">
+      <div class="scroll-top">
+        <span class="rank-tag">S-RANK</span>
+        <h3 class="mission-title">Proteger al Daimyo</h3>
+      </div>
+      <p class="mission-desc">Escolta VIP a través del Bosque de la Muerte. Se esperan asesinos de alto nivel.</p>
+      <button [routerLink]="['/mision']" class="btn-view">LEER PERGAMINO</button>
+    </div>
+  </main>
+</div>

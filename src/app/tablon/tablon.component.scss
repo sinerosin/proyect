@@ -1,0 +1,63 @@
+.tablon-container {
+  background: #221210;
+  min-height: 100vh;
+  color: white;
+}
+
+.ninja-navbar {
+  background: #1a0e0d;
+  padding: 1.5rem 3rem;
+  border-bottom: 1px solid #482623;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .nav-logo { margin: 0; font-weight: 900; .highlight { color: #ec2513; } }
+  .nav-links {
+    display: flex;
+    gap: 24px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    .nav-item { opacity: 0.6; cursor: pointer; }
+    .nav-item.active { opacity: 1; border-bottom: 2px solid #ec2513; padding-bottom: 4px; }
+  }
+}
+
+.mission-view {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2.5rem;
+  padding: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.mission-scroll {
+  background: #f3e5ab;
+  border-left: 12px solid #5d4037;
+  border-right: 12px solid #5d4037;
+  padding: 1.75rem;
+  color: #1a0e0d;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+
+  .scroll-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    .rank-tag { background: #b71c1c; color: white; font-size: 0.65rem; padding: 0.2rem 0.6rem; border-radius: 2px; font-weight: bold; }
+    .mission-title { margin: 0; text-transform: uppercase; font-size: 1.1rem; max-width: 70%; line-height: 1.2; }
+  }
+
+  .mission-desc { font-size: 0.9rem; line-height: 1.5; margin: 1.5rem 0; opacity: 0.9; }
+}
+
+.btn-view {
+  background: #1a0e0d;
+  color: #f3e5ab;
+  border: none;
+  width: 100%;
+  padding: 0.75rem;
+  font-weight: 900;
+  cursor: pointer;
+  letter-spacing: 1px;
+}

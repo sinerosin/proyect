@@ -1,0 +1,61 @@
+.mision-detail-container {
+  background: #221210;
+  min-height: 100vh;
+  color: white;
+  padding: 3rem 1.5rem;
+}
+
+.content-wrapper { max-width: 760px; margin: 0 auto; }
+
+.btn-back {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #c99692;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  margin-bottom: 2.5rem;
+  padding: 0;
+  &:hover { color: white; }
+}
+
+.mision-header {
+  margin-bottom: 2.5rem;
+  .status-label { color: #ec2513; font-weight: bold; font-size: 0.75rem; letter-spacing: 2.5px; }
+  .mision-name { font-size: 2.8rem; font-weight: 900; margin: 0.5rem 0; line-height: 1.1; }
+}
+
+.briefing-box {
+  background: #2d1b1a;
+  border-left: 5px solid #ec2513;
+  padding: 2.5rem;
+  border-radius: 0 1rem 1rem 0;
+  
+  .briefing-title { margin: 0 0 1.25rem 0; font-size: 1.3rem; border-bottom: 1px solid #482623; padding-bottom: 0.75rem; }
+  .briefing-text { 
+    opacity: 0.85; line-height: 1.7; 
+    .task-list { padding-left: 1.25rem; margin-top: 1rem; li { margin-bottom: 0.5rem; } }
+  }
+}
+
+.action-footer {
+  display: flex;
+  gap: 1.25rem;
+  margin-top: 3.5rem;
+  
+  .btn-action {
+    padding: 1.25rem;
+    border-radius: 0.75rem;
+    font-weight: 800;
+    border: none;
+    cursor: pointer;
+    flex: 1;
+    font-size: 1rem;
+    transition: all 0.2s;
+  }
+  
+  .btn-action.primary { background: #ec2513; color: white; }
+  .btn-action.outline { background: transparent; border: 2px solid #482623; color: white; &:hover { background: #482623; } }
+}
